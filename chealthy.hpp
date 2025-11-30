@@ -53,45 +53,45 @@ public:
     void InputData();
     
     // calculator index body 
-    float BMI(float weight, float height);
-    float BMR(string gender, float weight, float height, int age);
-    float TDEE(string gender, float weight, float height, int age, int activityLevel);
-    float WHR(string gender, float waist, float hip);
-    float LBM(string gender, float weight, float height);
-    float FFMI(string gender, float weight, float height);
-    float RFM(float waist, float height);
-    float BFP(string gender, float weight, float height, int age);
-    float BBW(float weight);
-    float IBW(string gender, float height);
-    float MA(string gender, float weight, float height, int age);
-    float VFR(float waist, float hip);
-    float BSA(float height, float weight);
-    float VO2MAX(float maxHeartRate, float restHeartRate);
-    float HSI(string gender, float weight, float height, int age, float cholesterol, float bloodPressure);
-    float MMI(string gender, float weight, float height);
-    float BFM(string gender, float weight, float height, int age);
+    inline float BMI(float weight, float height);
+    inline float BMR(string gender, float weight, float height, int age);
+    inline float TDEE(string gender, float weight, float height, int age, int activityLevel);
+    inline float WHR(string gender, float waist, float hip);
+    inline float LBM(string gender, float weight, float height);
+    inline float FFMI(string gender, float weight, float height);
+    inline float RFM(float waist, float height);
+    inline float BFP(string gender, float weight, float height, int age);
+    inline float BBW(float weight);
+    inline float IBW(string gender, float height);
+    inline float MA(string gender, float weight, float height, int age);
+    inline float VFR(float waist, float hip);
+    inline float BSA(float height, float weight);
+    inline float VO2MAX(float maxHeartRate, float restHeartRate);
+    inline float HSI(string gender, float weight, float height, int age, float cholesterol, float bloodPressure);
+    inline float MMI(string gender, float weight, float height);
+    inline float BFM(string gender, float weight, float height, int age);
 
     // nutritional advice
-    string NABMI(float bmi);
-    string NABMR(string gender, float bmr);
-    string NATDEE(string gender, float tdee);
-    string NAWHR(float whr);
-    string NALBM(float lbm);
-    string NAFFMI(float ffmi);
-    string NARFM(float rfm);
-    string NABFP(float bfp);
-    string NABBW(float bbw);
-    string NAIBW(float ibw);
-    string NAMA(float ma);
-    string NAVFR(float vfr);
-    string NABSA(float bsa);
-    string NAVO2MAX(float vo2max);
-    string NAHSI(float hsi);
-    string NAMMI(float mmi);
-    string NABFM(float bfm);
+    inline string NABMI(float bmi);
+    inline string NABMR(string gender, float bmr);
+    inline string NATDEE(string gender, float tdee);
+    inline string NAWHR(float whr);
+    inline string NALBM(float lbm);
+    inline string NAFFMI(float ffmi);
+    inline string NARFM(float rfm);
+    inline string NABFP(float bfp);
+    inline string NABBW(float bbw);
+    inline string NAIBW(float ibw);
+    inline string NAMA(float ma);
+    inline string NAVFR(float vfr);
+    inline string NABSA(float bsa);
+    inline string NAVO2MAX(float vo2max);
+    inline string NAHSI(float hsi);
+    inline string NAMMI(float mmi);
+    inline string NABFM(float bfm);
 
     // instruct
-    string INSTRUCT();
+    inline string INSTRUCT();
 };
 
 
@@ -104,7 +104,7 @@ float C_HEALTHY::BMI(float weight, float height){
     if(weight <= 0 || height <= 0)
         throw runtime_error("Cân nặng và chiều cao phải là số dương !");
     float bmi = weight / pow(height, 2);
-    return round(bmi * 100) / 100; 
+    return (float)round(bmi * 100) / 100; 
 }
 
 
@@ -116,9 +116,9 @@ float C_HEALTHY::BMR(string gender, float weight, float height, int age) {
 
     height *= 100; // chuyển m sang cm
     if(gender == "nữ")
-        return round((655 + (9.6 * weight) + (1.8 * height) - (4.7 * age)) * 100) / 100;
+        return (float)round((655 + (9.6 * weight) + (1.8 * height) - (4.7 * age)) * 100) / 100;
     else
-        return round((66 + (13.7 * weight) + (5 * height) - (6.8 * age)) * 100) / 100;
+        return (float)round((66 + (13.7 * weight) + (5 * height) - (6.8 * age)) * 100) / 100;
 }
 
 
@@ -132,7 +132,7 @@ float C_HEALTHY::TDEE(string gender, float weight, float height, int age, int ac
         case 5: movement_coefficient = 1.9; break;
         default: throw runtime_error("Mức độ hoạt động phải từ 1 đến 5!");
     }
-    return round(C_HEALTHY::BMR(gender, weight, height, age) * movement_coefficient * 100) / 100;
+    return (float)round(C_HEALTHY::BMR(gender, weight, height, age) * movement_coefficient * 100) / 100;
 }
 
 
@@ -141,7 +141,7 @@ float C_HEALTHY::WHR(string gender, float waist, float hip) {
         throw runtime_error("Giới tính phải là 'nam' hoặc 'nữ'");
     if(waist <= 0 || hip <= 0)
         throw runtime_error("Vòng eo và vòng hông phải là số dương!");
-    return round((waist / hip) * 100) / 100;
+    return (float)round((waist / hip) * 100) / 100;
 }
 
 
@@ -150,43 +150,43 @@ float C_HEALTHY::LBM(string gender, float weight, float height) {
         throw runtime_error("Giới tính phải là 'nam' hoặc 'nữ'");
     height *= 100;
     if(gender == "nam")
-        return round((0.32810 * weight + 0.33929 * height - 29.5336) * 100) / 100;
+        return (float)round((0.32810 * weight + 0.33929 * height - 29.5336) * 100) / 100;
     else
-        return round((0.29569 * weight + 0.41813 * height - 43.2933) * 100) / 100;
+        return (float)round((0.29569 * weight + 0.41813 * height - 43.2933) * 100) / 100;
 }
 
 
 float C_HEALTHY::FFMI(string gender, float weight, float height) {
-    return round((C_HEALTHY::LBM(gender, weight, height) / pow(height, 2)) * 100) / 100;
+    return (float)round((C_HEALTHY::LBM(gender, weight, height) / pow(height, 2)) * 100) / 100;
 }
 
 
 float C_HEALTHY::RFM(float waist, float height) {
     height *= 100;
-    return round((64 - 4 * (waist / height)) * 100) / 100;
+    return (float)round((64 - 4 * (waist / height)) * 100) / 100;
 }
 
 
 float C_HEALTHY::BFP(string gender, float weight, float height, int age) {
     float bmi = C_HEALTHY::BMI(weight, height);
     if(gender == "nam")
-        return round((1.2 * bmi + 0.23 * age - 16.2) * 100) / 100;
+        return (float)round((1.2 * bmi + 0.23 * age - 16.2) * 100) / 100;
     else
-        return round((1.2 * bmi + 0.23 * age - 5.4) * 100) / 100;
+        return (float)round((1.2 * bmi + 0.23 * age - 5.4) * 100) / 100;
 }
 
 
 float C_HEALTHY::BBW(float weight) {
-    return round(weight * 0.033 * 100) / 100;
+    return (float)round(weight * 0.033 * 100) / 100;
 }
 
 
 float C_HEALTHY::IBW(string gender, float height) {
     height *= 100;
     if(gender == "nam")
-        return round((50 + 2.3 * (height - 152.4)/2.54) * 100) / 100;
+        return (float)round((50 + 2.3 * (height - 152.4)/2.54) * 100) / 100;
     else
-        return round((45.5 + 2.3 * (height - 152.4)/2.54) * 100) / 100;
+        return (float)round((45.5 + 2.3 * (height - 152.4)/2.54) * 100) / 100;
 }
 
 
@@ -205,41 +205,41 @@ float C_HEALTHY::MA(string gender, float weight, float height, int age) {
         else bmrTB = 1200;
     }
     float heSo = (bmr - bmrTB) / 100;
-    return round((age - heSo) * 100) / 100;
+    return (float)round((age - heSo) * 100) / 100;
 }
 
 
 float C_HEALTHY::VFR(float waist, float hip) {
-    return round((waist / hip) * 100) / 100;
+    return (float)round((waist / hip) * 100) / 100;
 }
 
 
 float C_HEALTHY::BSA(float height, float weight) {
     height *= 100;
-    return round(sqrt((height * weight) / 3600) * 100) / 100;
+    return (float)round(sqrt((height * weight) / 3600) * 100) / 100;
 }
 
 
 float C_HEALTHY::VO2MAX(float maxHeartRate, float restHeartRate) {
-    return round(15 * (maxHeartRate / restHeartRate) * 100) / 100;
+    return (float)round(15 * (maxHeartRate / restHeartRate) * 100) / 100;
 }
 
 
 float C_HEALTHY::HSI(string gender, float weight, float height, int age, float cholesterol, float bloodPressure) {
     float bmi = C_HEALTHY::BMI(weight, height);
     float bfp = C_HEALTHY::BFP(gender, weight, height, age);
-    return round((bmi*0.4 + bfp*0.3 + bloodPressure*0.2 + cholesterol*0.1)/4 * 100) / 100;
+    return (float)round((bmi*0.4 + bfp*0.3 + bloodPressure*0.2 + cholesterol*0.1)/4 * 100) / 100;
 }
 
 
 float C_HEALTHY::MMI(string gender, float weight, float height) {
-    return round(C_HEALTHY::FFMI(gender, weight, height) / weight * 100) / 100;
+    return (float)round(C_HEALTHY::FFMI(gender, weight, height) / weight * 100) / 100;
 }
 
 
 float C_HEALTHY::BFM(string gender, float weight, float height, int age) {
     float bfp = C_HEALTHY::BFP(gender, weight, height, age);
-    return round(weight * (bfp / 100) * 100) / 100;
+    return (float)round(weight * (bfp / 100) * 100) / 100;
 }
 
 
